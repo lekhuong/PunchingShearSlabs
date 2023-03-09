@@ -35,8 +35,8 @@ XGBoost_6Var = pickle.load(open("XGBoost_6inputs.sav", "rb"))
 XGBoost_4Var = pickle.load(open("XGBoost_745.sav", "rb"))
 CatBoost_6Var = pickle.load(open("CatBoost_6inputs.sav", "rb"))
 CatBoost_4Var = pickle.load(open("CatBoost_745.sav", "rb"))
-GBRT_6Var = pickle.load(open("GBRT_6inputs.sav", "rb"))
-GBRT_4Var = pickle.load(open("GBRT_745.sav", "rb"))
+# GBRT_6Var = pickle.load(open("GBRT_6inputs.sav", "rb"))
+# GBRT_4Var = pickle.load(open("GBRT_745.sav", "rb"))
 
 # sidebar for navigation
 # Icons: https://icons.getbootstrap.com/
@@ -172,7 +172,7 @@ if selected == "6 Input features":
     input_data = np.array([depth, shear_span, column_width, ro, fy, fck]).reshape(1, -1)
     ccsCatBoost = CatBoost_6Var.predict(input_data)
     ccsXGB = XGBoost_6Var.predict(input_data)
-    ccsGBRT = GBRT_6Var.predict(input_data)
+    # ccsGBRT = GBRT_6Var.predict(input_data)
 
     # Calculate the average prediction value
     avg_ccs = (ccsCatBoost + ccsXGB) / 2.0
