@@ -135,7 +135,7 @@ if selected == "6 Input features":
             "Column width: c(mm)",
             min_value=40,
             max_value=750,
-            value=200,
+            value=250,
         )
 
     with col2:
@@ -151,7 +151,7 @@ if selected == "6 Input features":
             "Yield strength of reinforcement: fy(MPa)",
             min_value=250,
             max_value=750,
-            value=450,
+            value=400,
         )
 
     with col2:
@@ -175,12 +175,13 @@ if selected == "6 Input features":
     ccsGBRT = GBRT_6Var.predict(input_data)
 
     # Calculate the average prediction value
-    avg_ccs = (ccsCatBoost + ccsXGB + ccsGBRT) / 3.0
+    avg_ccs = (ccsCatBoost + ccsXGB) / 2.0
 
     str1 = "Model CatBoost: {} MPa \n".format(np.round(ccsCatBoost, 2))
     str2 = "Model XGBoost: {} MPa \n".format(np.round(ccsXGB, 2))
-    str3 = "Model GBRT: {} MPa \n".format(np.round(ccsGBRT, 2))
-    str4 = "Average Prediction: {} MPa \n".format(np.round(avg_ccs, 2))
+    # str3 = "Model GBRT: {} MPa \n".format(np.round(ccsGBRT, 2))
+    str3 = "Average Prediction: {} MPa \n".format(np.round(avg_ccs, 2))
+    str4 = "Please note that for accurate predictions, it is crucial to use realistic input values."
 
     if st.button("Prediction by ML"):
         st.success(str1 + "\n" + str2 + "\n" + str3 + "\n" + str4)
@@ -234,15 +235,16 @@ if selected == "4 Input features":
     input_data = np.array([depth, column_width, ro, fck]).reshape(1, -1)
     ccsCatBoost = CatBoost_4Var.predict(input_data)
     ccsXGB = XGBoost_4Var.predict(input_data)
-    ccsGBRT = GBRT_4Var.predict(input_data)
+    # ccsGBRT = GBRT_4Var.predict(input_data)
 
     # Calculate the average prediction value
-    avg_ccs = (ccsCatBoost + ccsXGB + ccsGBRT) / 3.0
+    avg_ccs = (ccsCatBoost + ccsXGB) / 2.0
 
     str1 = "Model CatBoost: {} MPa \n".format(np.round(ccsCatBoost, 2))
     str2 = "Model XGBoost: {} MPa \n".format(np.round(ccsXGB, 2))
-    str3 = "Model GBRT: {} MPa \n".format(np.round(ccsGBRT, 2))
-    str4 = "Average Prediction: {} MPa \n".format(np.round(avg_ccs, 2))
+    # str3 = "Model GBRT: {} MPa \n".format(np.round(ccsGBRT, 2))
+    str3 = "Average Prediction: {} MPa \n".format(np.round(avg_ccs, 2))
+    str4 = "Please note that for accurate predictions, it is crucial to use realistic input values."
 
     if st.button("Prediction by ML"):
         st.success(str1 + "\n" + str2 + "\n" + str3 + "\n" + str4)
